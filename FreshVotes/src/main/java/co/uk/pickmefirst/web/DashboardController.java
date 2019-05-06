@@ -1,8 +1,7 @@
 package co.uk.pickmefirst.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DashboardController 
@@ -11,4 +10,9 @@ public class DashboardController
 		public String rootView() {
 			return "index";
 	}
+	
+	 @GetMapping (value="/dashboard")
+	  public String dashboard() {
+	   return "dashboard";
+	 }
 }
