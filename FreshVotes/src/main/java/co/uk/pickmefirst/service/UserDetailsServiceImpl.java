@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import co.uk.pickmefirst.domain.User;
 import co.uk.pickmefirst.repositories.UserRepository;
+import co.uk.pickmefirst.security.CustomSecurityUser;
 
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
   @Autowired
@@ -20,6 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     if (user == null)
       throw new UsernameNotFoundException("Invalid Username and password");
     
-    return null;
+    return new CustomSecurityUser(user);
   }
+
 }

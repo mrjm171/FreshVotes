@@ -26,27 +26,23 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     auth
       .userDetailsService(userDetailsService)
       .passwordEncoder(getPasswordEncoder());
-        
-//    auth.inMemoryAuthentication()
-//        .passwordEncoder(getPasswordEncoder())
-//        .withUser("trevor@craftycodr.com")
-//        .password(getPasswordEncoder().encode("asdfasdf"))
-//        .roles("USER");
   }
   
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-        .authorizeRequests()
-          .antMatchers("/").permitAll()
-          .anyRequest().hasRole("USER").and()
-        .formLogin()
-          .loginPage("/login")
-          .defaultSuccessUrl("/dashboard")
-          .permitAll()
-          .and()
-        .logout()
-          .logoutUrl("/logout")
-          .permitAll();
+    .authorizeRequests()
+      .antMatchers("/").permitAll()
+      .antMatchers("/register").permitAll()
+      .antMatchers("/admin/**").hasRole("USER")
+      .anyRequest().hasRole("USER").and()
+    .formLogin()
+      .loginPage("/login")
+      .defaultSuccessUrl("/dashboard")
+      .permitAll()
+      .and()
+    .logout()
+      .logoutUrl("/logout")
+      .permitAll();
   }
 }
