@@ -1,9 +1,7 @@
 package co.uk.pickmefirst.security;
 
 import java.util.Set;
-
 import org.springframework.security.core.userdetails.UserDetails;
-
 import co.uk.pickmefirst.domain.User;
 
 public class CustomSecurityUser extends User implements UserDetails {
