@@ -2,20 +2,13 @@ package co.uk.pickmefirst.service;
 
 import java.util.Optional;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 
-
-
 import co.uk.pickmefirst.domain.Feature;
-
 import co.uk.pickmefirst.domain.Product;
-
+import co.uk.pickmefirst.domain.User;
 import co.uk.pickmefirst.repositories.FeatureRepository;
-
 import co.uk.pickmefirst.repositories.ProductRepository;
 
 @Service
@@ -25,7 +18,7 @@ public class FeatureService {
   @Autowired
   private FeatureRepository featureRepo;
   
-  public Feature createFeature(Long productId) {
+  public Feature createFeature(Long productId, User user) {
     Feature feature = new Feature();
     
     Optional<Product> productOpt = productRepo.findById(productId);
@@ -35,6 +28,9 @@ public class FeatureService {
       
       feature.setProduct(product);
       product.getFeatures().add(feature);
+      
+      feature.setUser(user);
+      user.getFeatures().add(feature);
       
       feature.setStatus("Pending review");
       
