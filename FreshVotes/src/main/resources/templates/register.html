@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-  <head>
-    <title>FreshVotes Dashboard</title>
-    <script th:replace="fragments/header :: headerElement"></script>  
-  </head>
+<head>
+<title>FreshVotes Register</title>
+<script th:replace="fragments/header :: headerElement"></script>
+<script type="text/javascript">
+  $(function () {
+    $("#back").click(function () {
+      window.location.href = '/login';
+    });
+  });
+</script>
+</head>
 <body>
   <div th:replace="fragments/header :: header"></div>
   <div class="container">
